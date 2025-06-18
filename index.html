@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="../IMG/logo.png" alt="Logo" class="logo">
+    </header>
+    <div class="contenido">
+        <div class="filtros">
+
+            <input type="text" placeholder="Buscar..." class="buscar">
+            <select class="filtro" id="filtro-ordenar">
+                <option value="ordenar">Ordenar por</option>
+                <option value="preciomayor">Mayor Precio</option>
+                <option value="preciomenor">Menor Precio</option>
+            </select>
+
+        </div>
+        <div class="categorias">
+            <div class="categoria">
+                <img id="categoria-hombre" onclick="filtrarProductos()" src="../IMG/hombre.png" alt="Categoria 1" class="categoria-imagen">
+            </div>
+            <div class="categoria">
+                <img id="categoria-mujer" onclick="filtrarProductos()" src="../IMG/mujer.png" alt="Categoria 2" class="categoria-imagen">
+            </div>
+            <div class="categoria">
+                <img id="categoria-joyeria" onclick="filtrarProductos()" src="../IMG/joyeria.png" alt="Categoria 3" class="categoria-imagen">
+            </div>
+            <div class="categoria">
+                <img id="categoria-electrodomesticos" onclick="filtrarProductos()" src="../IMG/electrodomesticos.png" alt="Categoria 4" class="categoria-imagen">
+            </div>
+        </div>
+
+        <div id="productos-container" class="productos">
+
+        </div>
+
+        <footer>
+            <img src="../IMG/carrito.png" alt="Logo" class="logo-footer">
+        </footer>
+    </div>
+
+ 
+</body>
+
+</html>
