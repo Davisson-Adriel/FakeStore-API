@@ -229,12 +229,12 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
                     `;
 
                     setTimeout(() => {
-                       contenedor.innerHTML=""
+                        contenedor.innerHTML = ""
                         productos.forEach(producto => {
-                        const card = document.createElement('div');
-                        card.className = "carta";
+                            const card = document.createElement('div');
+                            card.className = "carta";
 
-                        card.innerHTML = `
+                            card.innerHTML = `
                     <div class="contenido-carta">
                         <img src="${producto.image}" alt="${producto.title}">
                         <h2>${producto.title}</h2>
@@ -243,22 +243,23 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
                     </div>
                     `;
 
-                        contenedor.appendChild(card);
-                    });
+                            contenedor.appendChild(card);
+                        });
                     }, 3000);
-                    
+
                 })
         };
 
         function filtrarProductos() {
             const categoria = event.target.id;
             const contenedor = document.getElementById("productos-container");
+            categoriaseleccionada = categoria;
 
             fetch('https://fakestoreapi.com/products')
                 .then(response => response.json())
                 .then(productos => {
 
-                    contenedor.innerHTML ="";
+                    contenedor.innerHTML = "";
                     contenedor.innerHTML = `
                     
 
@@ -374,11 +375,11 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
                     setTimeout(() => {
                         contenedor.innerHTML = "";
                         productos.forEach(producto => {
-                        if (producto.category === categoria) {
-                            const card = document.createElement('div');
-                            card.className = "carta";
+                            if (producto.category === categoria) {
+                                const card = document.createElement('div');
+                                card.className = "carta";
 
-                            card.innerHTML = `
+                                card.innerHTML = `
                         <div class="contenido-carta">
                             <img src="${producto.image}" alt="${producto.title}">
                             <h2>${producto.title}</h2>
@@ -387,9 +388,10 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
                         </div>
                         `;
 
-                            contenedor.appendChild(card);
-                        }
-                    });
+                                contenedor.appendChild(card);
+
+                            };
+                        });
                     }, 3000);
 
                 });
@@ -420,8 +422,63 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
 
 
             obtenerproductor();
-        }
+        };
 
+        function ordenarProductos() {
+            const contenedor = document.getElementById("productos-container");
+            const orden = document.getElementById("filtro-ordenar").value;
+            fetch('https://fakestoreapi.com/products')
+                .then(response => response.json())
+                .then(productos => {
+                    if (orden === "preciomayor") {
+                        productos.sort((a, b) => b.price - a.price);
+                    } else if (orden === "preciomenor") {
+                        productos.sort((a, b) => a.price - b.price);
+                    };
+
+                    contenedor.innerHTML = "";
+                    productos.forEach(producto => {
+                        if (producto.category === categoriaseleccionada) {
+                            const card = document.createElement('div');
+                            card.className = "carta";
+
+                            card.innerHTML = `
+                    <div class="contenido-carta">
+                        <img src="${producto.image}" alt="${producto.title}">
+                        <h2>${producto.title}</h2>
+                        <p>$${producto.price}</p>
+                        <button class="btn">Añadir al carrito</button>
+                    </div>
+                    `;
+
+                            contenedor.appendChild(card);
+                        } else if (categoriaseleccionada === null) {
+                            const card = document.createElement('div');
+                            card.className = "carta";
+
+                            card.innerHTML = `
+                    <div class="contenido-carta">
+                        <img src="${producto.image}" alt="${producto.title}">
+                        <h2>${producto.title}</h2>
+                        <p>$${producto.price}</p>
+                        <button class="btn">Añadir al carrito</button>
+                    </div>
+                    `;
+
+                            contenedor.appendChild(card);
+
+                        };
+
+                    });
+                });
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const filtroOrdenar = document.getElementById("filtro-ordenar");
+            filtroOrdenar.addEventListener("change", ordenarProductos);
+        });
+
+        var categoriaseleccionada = null;
         inicio();
 
 
