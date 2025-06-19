@@ -157,7 +157,7 @@ footer img:hover {
     font-size: 0.9rem;
     color: #666;
     margin: 5px 0;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .productos {
@@ -169,7 +169,7 @@ footer img:hover {
     width: 100%;
     padding: 20px;
     gap: 20px;
-    margin-bottom: 100px; 
+    margin-bottom: 100px;
 }
 
 .btn {
@@ -187,4 +187,186 @@ footer img:hover {
 .btn:hover {
     background-color: #8ec6d0;
     transform: scale(1.05);
+}
+
+/* From Uiverse.io by vinodjangid07 */
+.loader {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.truckWrapper {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-x: hidden;
+}
+
+/* truck upper body */
+.truckBody {
+    width: 130px;
+    height: fit-content;
+    margin-bottom: 6px;
+    animation: motion 1s linear infinite;
+}
+
+/* truck suspension animation*/
+@keyframes motion {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* truck's tires */
+.truckTires {
+    width: 130px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px 0px 15px;
+    position: absolute;
+    bottom: 0;
+}
+
+.truckTires svg {
+    width: 24px;
+}
+
+.road {
+    width: 100%;
+    height: 1.5px;
+    background-color: #282828;
+    position: relative;
+    bottom: 0;
+    align-self: flex-end;
+    border-radius: 3px;
+}
+
+.road::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    background-color: #282828;
+    right: -50%;
+    border-radius: 3px;
+    animation: roadAnimation 1.4s linear infinite;
+    border-left: 10px solid white;
+}
+
+.road::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    background-color: #282828;
+    right: -65%;
+    border-radius: 3px;
+    animation: roadAnimation 1.4s linear infinite;
+    border-left: 4px solid white;
+}
+
+.lampPost {
+    position: absolute;
+    bottom: 0;
+    right: -90%;
+    height: 90px;
+    animation: roadAnimation 1.4s linear infinite;
+}
+
+@keyframes roadAnimation {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(-350px);
+    }
+}
+
+
+#loading {
+    margin-top: 40px;
+}
+
+.loader {
+    --ANIMATION-DELAY-MULTIPLIER: 70ms;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loader span {
+    padding: 0;
+    margin: 0;
+    letter-spacing: -5rem;
+    animation-delay: 0s;
+    transform: translateY(4rem);
+    animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.loader .l {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0);
+}
+
+.loader .o {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1);
+}
+
+.loader .a {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2);
+}
+
+.loader .d {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3);
+}
+
+.loader .ispan {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4);
+}
+
+.loader .n {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5);
+}
+
+.loader .g {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6);
+}
+
+.letter {
+    width: fit-content;
+    height: 3rem;
+}
+
+.i {
+    margin-inline: 5px;
+}
+
+@keyframes hideAndSeek {
+    0% {
+        transform: translateY(4rem);
+    }
+
+    100% {
+        transform: translateY(0rem);
+    }
 }
