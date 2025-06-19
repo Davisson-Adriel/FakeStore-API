@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="compra">
+
+    <div class="carro">
+        <div id="productos-carrito">
+
+
+        </div>
+        <button class="volver" onclick="window.location.href='index.html'">Volver a la tienda</button>
+    </div>
+    </div>
+    <script>
+
+        addEventListener("DOMContentLoaded", () => {
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            const productosCarrito = document.getElementById("productos-carrito");
+
+            if (carrito.length === 0) {
+                productosCarrito.innerHTML = "<p>El carrito está vacío</p>";
+                return;
+            }
+
+            carrito.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "producto-carrito";
+                div.innerHTML = `
+            <h3>${item.producto}</h3>
+            <p>$${item.precio}</p>
+        `;
+                const eliminar = document.createElement("button");
+                eliminar.className = "eliminar";
+                eliminar.textContent = "Eliminar";
+
+                eliminar.addEventListener("click", () => {
+                    const index = carrito.indexOf(item);
+                    if (index > -1) {
+                        carrito.splice(index, 1);
+                        localStorage.setItem("carrito", JSON.stringify(carrito));
+                        div.remove();
+                        actualizarTotal();
+                    }
+                    alert("Producto eliminado del carrito");
+                });
+
+                div.appendChild(eliminar);
+                productosCarrito.appendChild(div);
+            });
+
+            const total = document.createElement("div");
+            total.className = "total";
+            productosCarrito.appendChild(total);
+
+            function actualizarTotal() {
+                const nuevoTotal = carrito.reduce((acc, item) => acc + parseFloat(item.precio), 0);
+                total.innerHTML = `<h3>Total: $${nuevoTotal.toFixed(2)}</h3>`;
+            }
+
+            actualizarTotal();
+
+            const pagar = document.createElement("button");
+            pagar.className = "pagar";
+            pagar.textContent = "Pagar";
+            pagar.addEventListener("click", () => {
+                localStorage.removeItem("carrito");
+                alert("GRACIAS POR SU COMPRA");
+                productosCarrito.innerHTML = "<p>El carrito está vacío</p>";
+            });
+            productosCarrito.appendChild(pagar);
+        });
+
+
+
+    </script>
+</body>
+
+</html>
