@@ -506,7 +506,7 @@ footer img:hover {
     color: black;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .filtros {
         margin-top: 10px;
         flex-direction: column;
@@ -526,7 +526,6 @@ footer img:hover {
 
     .carta {
         width: 100%;
-       
     }
 
     header img {

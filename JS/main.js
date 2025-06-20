@@ -116,6 +116,8 @@ function ordenarProductos() {
         productos.sort((a, b) => b.price - a.price);
       } else if (orden === "preciomenor") {
         productos.sort((a, b) => a.price - b.price);
+      } else if (orden === "puntajealto") {
+        productos.sort((a, b) => b.rating.rate - a.rating.rate);
       };
 
       contenedor.innerHTML = "";
