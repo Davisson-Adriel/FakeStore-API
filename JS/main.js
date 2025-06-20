@@ -1,23 +1,23 @@
 
 
-    function obtenerproductor() {
-      const contenedor = document.getElementById("productos-container");
+function obtenerproductor() {
+  const contenedor = document.getElementById("productos-container");
 
-      fetch('https://fakestoreapi.com/products')
-        .then(response => response.json())
-        .then(productos => {
+  fetch('https://fakestoreapi.com/products')
+    .then(response => response.json())
+    .then(productos => {
 
-          contenedor.innerHTML = '';
+      contenedor.innerHTML = '';
 
-          contenedor.innerHTML = loading;
+      contenedor.innerHTML = loading;
 
-          setTimeout(() => {
-            contenedor.innerHTML = ""
-            productos.forEach(producto => {
-              const card = document.createElement('div');
-              card.className = "carta";
+      setTimeout(() => {
+        contenedor.innerHTML = ""
+        productos.forEach(producto => {
+          const card = document.createElement('div');
+          card.className = "carta";
 
-              card.innerHTML = `
+          card.innerHTML = `
                     <div class="contenido-carta">
                         <img src="${producto.image}" alt="${producto.title}">
                         <h2>${producto.title}</h2>
@@ -26,38 +26,38 @@
                     </div>
                     `;
 
-              const boton = card.querySelector(".btn");
-              boton.addEventListener("click", () => {
-                agregaralcarrito(producto);
-              });
+          const boton = card.querySelector(".btn");
+          boton.addEventListener("click", () => {
+            agregaralcarrito(producto);
+          });
 
-              contenedor.appendChild(card);
-            });
-          }, 3000);
-
+          contenedor.appendChild(card);
         });
-    };
+      }, 3000);
 
-    function filtrarProductos() {
-      const categoria = event.target.id;
-      const contenedor = document.getElementById("productos-container");
-      categoriaseleccionada = categoria;
+    });
+};
 
-      fetch('https://fakestoreapi.com/products')
-        .then(response => response.json())
-        .then(productos => {
+function filtrarProductos() {
+  const categoria = event.target.id;
+  const contenedor = document.getElementById("productos-container");
+  categoriaseleccionada = categoria;
 
-          contenedor.innerHTML = "";
-          contenedor.innerHTML = loading;
+  fetch('https://fakestoreapi.com/products')
+    .then(response => response.json())
+    .then(productos => {
 
-          setTimeout(() => {
-            contenedor.innerHTML = "";
-            productos.forEach(producto => {
-              if (producto.category === categoria) {
-                const card = document.createElement('div');
-                card.className = "carta";
+      contenedor.innerHTML = "";
+      contenedor.innerHTML = loading;
 
-                card.innerHTML = `
+      setTimeout(() => {
+        contenedor.innerHTML = "";
+        productos.forEach(producto => {
+          if (producto.category === categoria) {
+            const card = document.createElement('div');
+            card.className = "carta";
+
+            card.innerHTML = `
                         <div class="contenido-carta">
                             <img src="${producto.image}" alt="${producto.title}">
                             <h2>${producto.title}</h2>
@@ -66,143 +66,229 @@
                         </div>
                         `;
 
-                const boton = card.querySelector(".btn");
-                boton.addEventListener("click", () => {
-                  agregaralcarrito(producto);
-                });
-
-                contenedor.appendChild(card);
-
-              };
+            const boton = card.querySelector(".btn");
+            boton.addEventListener("click", () => {
+              agregaralcarrito(producto);
             });
-          }, 3000);
 
-        });
+            contenedor.appendChild(card);
 
-    };
-
-
-    async function inicio() {
-      const loader = document.getElementById("loader");
-      const header = document.querySelector("header");
-      const contenido = document.querySelector(".contenido");
-
-
-      contenido.style.display = "none";
-      header.style.display = "none";
-
-
-      loader.style.display = "flex";
-      loader.style.justifyContent = "center";
-      loader.style.alignItems = "center";
-      loader.style.height = "100vh";
-      loader.style.width = "100vw";
-
-      await new Promise(resolve => setTimeout(resolve, 4000));
-      loader.style.display = "none";
-      contenido.style.display = "flex";
-      header.style.display = "flex";
-
-
-      obtenerproductor();
-    };
-
-    function ordenarProductos() {
-      const contenedor = document.getElementById("productos-container");
-      const orden = document.getElementById("filtro-ordenar").value;
-      fetch('https://fakestoreapi.com/products')
-        .then(response => response.json())
-        .then(productos => {
-          if (orden === "preciomayor") {
-            productos.sort((a, b) => b.price - a.price);
-          } else if (orden === "preciomenor") {
-            productos.sort((a, b) => a.price - b.price);
           };
-
-          contenedor.innerHTML = "";
-          productos.forEach(producto => {
-            if (producto.category === categoriaseleccionada) {
-              const card = document.createElement('div');
-              card.className = "carta";
-
-              card.innerHTML = `
-                    <div class="contenido-carta">
-                        <img src="${producto.image}" alt="${producto.title}">
-                        <h2>${producto.title}</h2>
-                        <p>${producto.price}</p>
-                        <button class="btn">Añadir al carrito</button>
-                    </div>
-                    `;
-
-              const boton = card.querySelector(".btn");
-              boton.addEventListener("click", () => {
-                agregaralcarrito(producto);
-              });
-
-              contenedor.appendChild(card);
-            } else if (categoriaseleccionada === null) {
-              const card = document.createElement('div');
-              card.className = "carta";
-
-              card.innerHTML = `
-                    <div class="contenido-carta">
-                        <img src="${producto.image}" alt="${producto.title}">
-                        <h2>${producto.title}</h2>
-                        <p>${producto.price}</p>
-                        <button class="btn">Añadir al carrito</button>
-                    </div>
-                    `;
-              const boton = card.querySelector(".btn");
-              boton.addEventListener("click", () => {
-                agregaralcarrito(producto);
-              });
-              contenedor.appendChild(card);
-
-            };
-
-          });
         });
-    };
+      }, 3000);
 
-    function buscarproductos() {
-      const contenedor = document.getElementById("productos-container");
-      const buscador = document.getElementById("buscador").value.toLowerCase();
-
-      const tarjetas = contenedor.querySelectorAll(".carta");
-
-      tarjetas.forEach(div => {
-        const titulo = div.querySelector("h2").textContent.toLowerCase();
-        if (titulo.includes(buscador)) {
-          div.style.display = "block";
-        } else {
-          div.style.display = "none";
-        };
-      });
-    };
-
-    function agregaralcarrito() {
-      const producto = event.target.parentElement.querySelector("h2").textContent;
-      const preciotext = event.target.parentElement.querySelector("p").textContent;
-      const preciosin = parseFloat(preciotext);
-      const precio = preciosin;
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      carrito.push({producto, precio});
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      alert(`Producto añadido: ${producto}, Precio: ${precio}`);
-    };
-
-    function vercarrito() {
-      window.location.href = "carrito.html";
-    };
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const filtroOrdenar = document.getElementById("filtro-ordenar");
-      filtroOrdenar.addEventListener("change", ordenarProductos);
     });
 
-    var categoriaseleccionada = null;
-    inicio();
-    var loading = `
+};
+
+
+async function inicio() {
+  const loader = document.getElementById("loader");
+  const header = document.querySelector("header");
+  const contenido = document.querySelector(".contenido");
+
+
+  contenido.style.display = "none";
+  header.style.display = "none";
+
+
+  loader.style.display = "flex";
+  loader.style.justifyContent = "center";
+  loader.style.alignItems = "center";
+  loader.style.height = "100vh";
+  loader.style.width = "100vw";
+
+  await new Promise(resolve => setTimeout(resolve, 4000));
+  loader.style.display = "none";
+  contenido.style.display = "flex";
+  header.style.display = "flex";
+
+
+  obtenerproductor();
+};
+
+function ordenarProductos() {
+  const contenedor = document.getElementById("productos-container");
+  const orden = document.getElementById("filtro-ordenar").value;
+  fetch('https://fakestoreapi.com/products')
+    .then(response => response.json())
+    .then(productos => {
+      if (orden === "preciomayor") {
+        productos.sort((a, b) => b.price - a.price);
+      } else if (orden === "preciomenor") {
+        productos.sort((a, b) => a.price - b.price);
+      };
+
+      contenedor.innerHTML = "";
+      productos.forEach(producto => {
+        if (producto.category === categoriaseleccionada) {
+          const card = document.createElement('div');
+          card.className = "carta";
+
+          card.innerHTML = `
+                    <div class="contenido-carta">
+                        <img src="${producto.image}" alt="${producto.title}">
+                        <h2>${producto.title}</h2>
+                        <p>${producto.price}</p>
+                        <button class="btn">Añadir al carrito</button>
+                    </div>
+                    `;
+
+          const boton = card.querySelector(".btn");
+          boton.addEventListener("click", () => {
+            agregaralcarrito(producto);
+          });
+
+          contenedor.appendChild(card);
+        } else if (categoriaseleccionada === null) {
+          const card = document.createElement('div');
+          card.className = "carta";
+
+          card.innerHTML = `
+                    <div class="contenido-carta">
+                        <img src="${producto.image}" alt="${producto.title}">
+                        <h2>${producto.title}</h2>
+                        <p>${producto.price}</p>
+                        <button class="btn">Añadir al carrito</button>
+                    </div>
+                    `;
+          const boton = card.querySelector(".btn");
+          boton.addEventListener("click", () => {
+            agregaralcarrito(producto);
+          });
+          contenedor.appendChild(card);
+
+        };
+
+      });
+    });
+};
+
+function buscarproductos() {
+  const contenedor = document.getElementById("productos-container");
+  const buscador = document.getElementById("buscador").value.toLowerCase();
+
+  const tarjetas = contenedor.querySelectorAll(".carta");
+
+  tarjetas.forEach(div => {
+    const titulo = div.querySelector("h2").textContent.toLowerCase();
+    if (titulo.includes(buscador)) {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    };
+  });
+};
+
+function agregaralcarrito() {
+  const producto = event.target.parentElement.querySelector("h2").textContent;
+  const preciotext = event.target.parentElement.querySelector("p").textContent;
+  const preciosin = parseFloat(preciotext);
+  const precio = preciosin;
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  carrito.push({ producto, precio });
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert(`Producto añadido: ${producto}, Precio: ${precio}`);
+};
+
+function vercarrito() {
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const productosCarrito = document.getElementsByClassName("modal-contenido")[0];
+  productosCarrito.innerHTML = "";
+  const modal = document.getElementById("miModal");
+  modal.style.display = "block";
+
+  const cerrarModal = document.createElement("span");
+  cerrarModal.className = "cerrar";
+  cerrarModal.innerHTML = "&times;";
+
+  cerrarModal.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  productosCarrito.appendChild(cerrarModal);
+
+  if (carrito.length === 0) {
+    productosCarrito.innerHTML = "<p>El carrito está vacío</p>";
+    const cerrarModal = document.createElement("span");
+    cerrarModal.className = "cerrar";
+    cerrarModal.innerHTML = "&times;";
+
+    cerrarModal.onclick = function () {
+      modal.style.display = "none";
+    };
+    productosCarrito.appendChild(cerrarModal);
+    return;
+  }
+
+  carrito.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "producto-carrito";
+    div.innerHTML = `
+            <h3>${item.producto}</h3>
+            <p>$${item.precio}</p>
+        `;
+    const eliminar = document.createElement("button");
+    eliminar.className = "eliminar";
+    eliminar.textContent = "Eliminar";
+
+    eliminar.addEventListener("click", () => {
+      const index = carrito.indexOf(item);
+      if (index > -1) {
+        carrito.splice(index, 1);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        div.remove();
+        actualizarTotal();
+      }
+      alert("Producto eliminado del carrito");
+    });
+
+    div.appendChild(eliminar);
+    productosCarrito.appendChild(div);
+  });
+
+  const total = document.createElement("div");
+  total.className = "total";
+  productosCarrito.appendChild(total);
+
+  function actualizarTotal() {
+    const nuevoTotal = carrito.reduce((acc, item) => acc + parseFloat(item.precio), 0);
+    total.innerHTML = `<h3>Total: $${nuevoTotal.toFixed(2)}</h3>`;
+  }
+
+  actualizarTotal();
+
+  const pagar = document.createElement("button");
+  pagar.className = "pagar";
+  pagar.textContent = "Pagar";
+  pagar.addEventListener("click", () => {
+    localStorage.removeItem("carrito");
+    alert("GRACIAS POR SU COMPRA");
+    productosCarrito.innerHTML="";
+    productosCarrito.innerHTML = "<p>El carrito está vacío</p>";
+    const cerrarModal = document.createElement("span");
+    cerrarModal.className = "cerrar";
+    cerrarModal.innerHTML = "&times;";
+
+    cerrarModal.onclick = function () {
+      modal.style.display = "none";
+    };
+    productosCarrito.appendChild(cerrarModal);
+    return;
+  });
+  productosCarrito.appendChild(pagar);
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const filtroOrdenar = document.getElementById("filtro-ordenar");
+  filtroOrdenar.addEventListener("change", ordenarProductos);
+});
+
+var categoriaseleccionada = null;
+inicio();
+var loading = `
         <div class="loader" id="loading">
             <span class="l">
               <svg
