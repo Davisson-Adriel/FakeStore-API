@@ -15,29 +15,24 @@ header {
     align-items: center;
     align-content: center;
     justify-content: center;
-    background-color: #a3d8dd;
-    color: white;
+    background-color:  #f4dec8;
     padding: 10px 0;
     text-align: center;
-    border-bottom: 2px solid #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header img {
-    width: 8%;
+    width: 5%;
 }
 
 .filtros {
+    margin-top: 20px;
     display: flex;
     width: 70%;
     justify-content: center;
     align-items: center;
     align-content: center;
-    transition: transform 0.5s ease-in-out;
-}
-
-.filtros:hover {
-    transform: scale(1.05);
-    transition: 0.5s ease-in-out;
+    gap: 10px;
 }
 
 .filtros input[type="text"],
@@ -45,11 +40,27 @@ header img {
     width: 100%;
     padding: 10px;
     margin: 5px 5px;
-    border: 2px solid #333;
     border-radius: 5px;
     font-size: 0.8rem;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #f2f0f0;
+    transition: border-color 0.8s ease-in-out;
+    cursor: pointer;
+    transition: transform 0.8s ease-in-out;
 }
+
+
+.filtros select{
+    max-width: 200px;
+}
+
+.filtros input[type="text"]:hover,
+.filtros select:hover {
+    border-color: #c29c77;
+    transform: scale(1.05);
+    transition: border-color 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
 
 
 .contenido {
@@ -68,6 +79,7 @@ header img {
     align-content: center;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .categoria {
@@ -81,21 +93,23 @@ header img {
 }
 
 .categoria-imagen {
-    width: 70px;
-    border-radius: 100px;
-    border: 2px solid #333;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    width: 100px;
+    border-radius: 10px;
+    border: solid #f2f0f0;
+    box-shadow: hsl(0, 0%, 80%) 0px 5px 5px;
     cursor: pointer;
+    transition: border 0.8s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .categoria-imagen:hover {
     transform: scale(1.1);
+    border: #c29c77 solid;
+    transition: border 0.8s ease-in-out, transform 0.3s ease-in-out;
 }
 
 footer {
-    background-color: #a3d8dd;
-    border-top: 2px solid #333;
+    background-color:  #f4dec8;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -108,7 +122,7 @@ footer {
 }
 
 footer img {
-    width: 50px;
+    width: 30px;
     margin: 10px;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
@@ -123,11 +137,11 @@ footer img:hover {
     height: 250px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    box-shadow: hsl(0, 0%, 80%) 0px 5px 5px;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
     padding: 10px;
-    border: solid;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -173,7 +187,7 @@ footer img:hover {
 }
 
 .btn {
-    background-color: #a3d8dd;
+    background-color: #a7c6bd;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -185,11 +199,10 @@ footer img:hover {
 }
 
 .btn:hover {
-    background-color: #8ec6d0;
+    background-color: #779f94;
     transform: scale(1.05);
 }
 
-/* From Uiverse.io by vinodjangid07 */
 .loader {
     width: fit-content;
     height: fit-content;
@@ -508,15 +521,28 @@ footer img:hover {
     .productos {
         flex-direction: column;
         align-items: center;
+        gap: 30px;
     }
 
     .carta {
-        width: 90%;
-        max-width: 300px;
+        width: 100%;
+       
     }
 
     header img {
         width: 15%;
     }
     
+    .categoria {
+        width: 100%;
+    }
+
+    .categorias {
+        width: 100%;
+        
+    }
+
+    .categoria-imagen {
+        width: 70px;
+    }
 }

@@ -56,7 +56,6 @@ function filtrarProductos() {
           if (producto.category === categoria) {
             const card = document.createElement('div');
             card.className = "carta";
-
             card.innerHTML = `
                         <div class="contenido-carta">
                             <img src="${producto.image}" alt="${producto.title}">
@@ -124,7 +123,6 @@ function ordenarProductos() {
         if (producto.category === categoriaseleccionada) {
           const card = document.createElement('div');
           card.className = "carta";
-
           card.innerHTML = `
                     <div class="contenido-carta">
                         <img src="${producto.image}" alt="${producto.title}">
@@ -143,7 +141,6 @@ function ordenarProductos() {
         } else if (categoriaseleccionada === null) {
           const card = document.createElement('div');
           card.className = "carta";
-
           card.innerHTML = `
                     <div class="contenido-carta">
                         <img src="${producto.image}" alt="${producto.title}">
@@ -265,7 +262,7 @@ function vercarrito() {
   pagar.addEventListener("click", () => {
     localStorage.removeItem("carrito");
     alert("GRACIAS POR SU COMPRA");
-    productosCarrito.innerHTML="";
+    productosCarrito.innerHTML = "";
     productosCarrito.innerHTML = "<p>El carrito está vacío</p>";
     const cerrarModal = document.createElement("span");
     cerrarModal.className = "cerrar";
