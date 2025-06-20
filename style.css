@@ -492,3 +492,31 @@ footer img:hover {
 .cerrar:hover {
     color: black;
 }
+
+@media (max-width: 768px) {
+    .filtros {
+        margin-top: 10px;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .categoria {
+        width: 45%;
+        margin: 10px 0;
+    }
+
+    .productos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carta {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    header img {
+        width: 15%;
+    }
+    
+}
