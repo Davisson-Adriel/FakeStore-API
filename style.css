@@ -158,12 +158,13 @@ footer img:hover {
 .carta img {
     width: 40%;
     height: auto;
+    max-height: 100px;
     max-width: 60px;
     border-radius: 10px;
 }
 
 .carta h2 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin: 10px 0;
 }
 

@@ -22,6 +22,7 @@ function obtenerproductor() {
                         <img src="${producto.image}" alt="${producto.title}">
                         <h2>${producto.title}</h2>
                         <p>${producto.price}</p>
+                        <p>⭐${producto.rating.rate}</p>
                         <button class="btn">Añadir al carrito</button>
                     </div>
                     `;
@@ -61,6 +62,7 @@ function filtrarProductos() {
                             <img src="${producto.image}" alt="${producto.title}">
                             <h2>${producto.title}</h2>
                             <p>${producto.price}</p>
+                            <p>⭐${producto.rating.rate}</p>
                             <button class="btn">Añadir al carrito</button>
                         </div>
                         `;
@@ -130,6 +132,7 @@ function ordenarProductos() {
                         <img src="${producto.image}" alt="${producto.title}">
                         <h2>${producto.title}</h2>
                         <p>${producto.price}</p>
+                        <p>⭐${producto.rating.rate}</p>
                         <button class="btn">Añadir al carrito</button>
                     </div>
                     `;
@@ -148,6 +151,7 @@ function ordenarProductos() {
                         <img src="${producto.image}" alt="${producto.title}">
                         <h2>${producto.title}</h2>
                         <p>${producto.price}</p>
+                        <p>⭐${producto.rating.rate}</p>
                         <button class="btn">Añadir al carrito</button>
                     </div>
                     `;
