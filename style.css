@@ -15,14 +15,14 @@ header {
     align-items: center;
     align-content: center;
     justify-content: center;
-    background-color:  #f4dec8;
+    background-color: #f4dec8;
     padding: 10px 0;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header img {
-    width: 5%;
+    width: 50px;
 }
 
 .filtros {
@@ -50,7 +50,7 @@ header img {
 }
 
 
-.filtros select{
+.filtros select {
     max-width: 200px;
 }
 
@@ -108,7 +108,7 @@ header img {
 }
 
 footer {
-    background-color:  #f4dec8;
+    background-color: #f4dec8;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
     position: fixed;
@@ -507,6 +507,61 @@ footer img:hover {
     color: black;
 }
 
+.video-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.video-container video {
+    width: 800px;
+    height: auto;
+    border-radius: 20px;
+    z-index: 0;
+    position: relative;
+}
+
+.titulo2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    z-index: 1;
+    position: absolute;
+    bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border: solid #f2f0f0;
+    padding: 5px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+a h1 {
+    font-size: 1rem;
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a:hover {
+    color: #c29c77;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 @media (max-width: 767px) {
     .filtros {
         margin-top: 10px;
@@ -530,19 +585,27 @@ footer img:hover {
     }
 
     header img {
-        width: 15%;
+        width: 30px;
     }
-    
+
     .categoria {
         width: 100%;
     }
 
     .categorias {
         width: 100%;
-        
+
     }
 
     .categoria-imagen {
         width: 70px;
+    }
+
+    .video-container video {
+        width: 100%;
+    }
+
+    a {
+        display: none;
     }
 }

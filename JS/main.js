@@ -87,10 +87,12 @@ async function inicio() {
   const loader = document.getElementById("loader");
   const header = document.querySelector("header");
   const contenido = document.querySelector(".contenido");
+  const video = document.querySelector(".video-container");
 
 
   contenido.style.display = "none";
   header.style.display = "none";
+  video.style.display = "none";
 
 
   loader.style.display = "flex";
@@ -103,7 +105,7 @@ async function inicio() {
   loader.style.display = "none";
   contenido.style.display = "flex";
   header.style.display = "flex";
-
+  video.style.display = "flex";
 
   obtenerproductor();
 };
