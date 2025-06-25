@@ -94,7 +94,13 @@ Este proyecto es una **tienda online ficticia** construida en HTML, CSS y JavaSc
 ![Movil](./IMG/image-2.png)
 ![Carrito de compra movil](./IMG/image-4.png)
 
-Se presenta la maquetación inicialmente planteada; sin embargo, se realizaron ajustes al boceto con el fin de lograr un diseño más elegante y coherente con sus componentes. Además, el carrito de compras fue trasladado de un archivo HTML independiente a un sistema implementado con JavaScript, permitiendo mostrar su contenido dentro del mismo HTML.
+Se presenta la maquetación inicialmente planteada; sin embargo, se realizaron ajustes al boceto con el fin de lograr un diseño más elegante y coherente con sus componentes. Además, el carrito de compras fue trasladado de un archivo HTML independiente a un sistema implementado con JavaScript, permitiendo mostrar su contenido dentro del mismo HTML. A continuación se muestra el resultado final.
+
+![Escritorio Real](./IMG/real1.png)
+![Resultados](./IMG/real2.png)
+![Carrito Real](./IMG/real3.png)
+![alt text](./IMG/realcel1.png)
+![alt text](./IMG/realcel2.png)
 
 ---
 
