@@ -117,7 +117,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     z-index: 1000;
 }
 
@@ -561,6 +560,17 @@ a:hover {
 html {
     scroll-behavior: smooth;
 }
+
+#contador-carrito {
+    background-color: #2a4345;
+    color: white;
+    border-radius: 100%;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 
 @media (max-width: 767px) {
     .filtros {

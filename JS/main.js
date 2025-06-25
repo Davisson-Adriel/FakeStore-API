@@ -193,7 +193,14 @@ function agregaralcarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   carrito.push({ producto, precio });
   localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContadorCarrito();
   alert(`Producto añadido: ${producto}, Precio: ${precio}`);
+};
+
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const contador = document.getElementById("contador-carrito");
+  contador.textContent = carrito.length;
 };
 
 function vercarrito() {
@@ -269,6 +276,7 @@ function vercarrito() {
   pagar.textContent = "Pagar";
   pagar.addEventListener("click", () => {
     localStorage.removeItem("carrito");
+    actualizarContadorCarrito();
     alert("GRACIAS POR SU COMPRA");
     productosCarrito.innerHTML = "";
     productosCarrito.innerHTML = "<p>El carrito está vacío</p>";
