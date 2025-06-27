@@ -571,6 +571,29 @@ html {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.categoria h1 {
+    font-size: 100%;
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    font-family:initial;
+}
+
+.contenedor-todos {
+    width: 100px;
+    border-radius: 10px;
+    border: solid #f2f0f0;
+    box-shadow: hsl(0, 0%, 80%) 0px 5px 5px;
+    cursor: pointer;
+    transition: border 0.8s ease-in-out, transform 0.3s ease-in-out;
+    padding: 15px;
+}
+
+.contenedor-todos:hover {
+    transform: scale(1.1);
+    border: #c29c77 solid;
+    transition: border 0.8s ease-in-out, transform 0.3s ease-in-out;
+}
 
 @media (max-width: 767px) {
     .filtros {

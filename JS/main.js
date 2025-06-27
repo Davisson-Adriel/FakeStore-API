@@ -2,7 +2,7 @@
 
 function obtenerproductor() {
   const contenedor = document.getElementById("productos-container");
-
+  categoriaseleccionada = null;
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
     .then(productos => {
@@ -301,6 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 var categoriaseleccionada = null;
 inicio();
+actualizarContadorCarrito();
 var loading = `
         <div class="loader" id="loading">
             <span class="l">
