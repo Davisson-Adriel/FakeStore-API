@@ -3,7 +3,7 @@
 function obtenerproductor() {
   const contenedor = document.getElementById("productos-container");
   categoriaseleccionada = null;
-  fetch('https://fakestoreapi.com/products')
+  fetch(linkAPI)
     .then(response => response.json())
     .then(productos => {
 
@@ -44,7 +44,7 @@ function filtrarProductos() {
   const contenedor = document.getElementById("productos-container");
   categoriaseleccionada = categoria;
 
-  fetch('https://fakestoreapi.com/products')
+  fetch(linkAPI)
     .then(response => response.json())
     .then(productos => {
 
@@ -113,7 +113,7 @@ async function inicio() {
 function ordenarProductos() {
   const contenedor = document.getElementById("productos-container");
   const orden = document.getElementById("filtro-ordenar").value;
-  fetch('https://fakestoreapi.com/products')
+  fetch(linkAPI)
     .then(response => response.json())
     .then(productos => {
       if (orden === "preciomayor") {
@@ -302,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 var categoriaseleccionada = null;
 inicio();
 actualizarContadorCarrito();
+var linkAPI = 'https://fakestoreapi.com/products';
 var loading = `
         <div class="loader" id="loading">
             <span class="l">
