@@ -92,6 +92,34 @@ header img {
     align-content: center;
 }
 
+.categoriatodos {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    border-radius: 10px;
+}
+
+.categoriatodos h1 {
+    font-size: 1rem;
+    padding: 10px;
+    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border: solid #f2f0f0;
+}
+
+.categoriatodos h1:hover {
+    color: #c29c77;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+}
+
 .categoria-imagen {
     width: 100px;
     border-radius: 10px;
@@ -616,6 +644,11 @@ html {
         margin-top: 10px;
         flex-direction: column;
         width: 90%;
+    }
+
+    .categoriatodos h1 {
+        font-size: 0.8rem;
+        padding: 5px;
     }
 
     .categoria {
