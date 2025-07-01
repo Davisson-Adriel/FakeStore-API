@@ -209,7 +209,14 @@ function agregaralcarrito() {
   const preciosin = parseFloat(preciotext);
   const precio = preciosin;
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  carrito.push({ producto, precio });
+  const productoExistente = carrito.find(item => item.producto === producto);
+
+  if (productoExistente) {
+    productoExistente.cantidad++;
+  } else {
+    carrito.push({ producto, precio, cantidad: 1 });
+  };
+
   localStorage.setItem("carrito", JSON.stringify(carrito));
   actualizarContadorCarrito();
   alert(`Producto añadido: ${producto}, Precio: ${precio}`);
@@ -258,7 +265,18 @@ function vercarrito() {
     div.innerHTML = `
             <h3>${item.producto}</h3>
             <p>$${item.precio}</p>
+            <input type="number" value="${item.cantidad}" min="1" class="cantidad-input" data-producto="${item.producto}">
         `;
+
+    const cantidadInput = div.querySelector(".cantidad-input");
+
+    cantidadInput.addEventListener("change", (e) => {
+      const nuevaCantidad = parseInt(e.target.value);
+        item.cantidad = nuevaCantidad;
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        actualizarTotal();
+    });
+
     const eliminar = document.createElement("button");
     eliminar.className = "eliminar";
     eliminar.textContent = "Eliminar";
@@ -283,9 +301,17 @@ function vercarrito() {
   productosCarrito.appendChild(total);
 
   function actualizarTotal() {
-    const nuevoTotal = carrito.reduce((acc, item) => acc + parseFloat(item.precio), 0);
+    const cantidadInputs = document.querySelectorAll(".cantidad-input");
+    cantidadInputs.forEach(input => {
+      const producto = input.dataset.producto;
+      const item = carrito.find(item => item.producto === producto);
+      if (item) {
+        item.cantidad = parseInt(input.value);
+      };
+    });
+    const nuevoTotal = carrito.reduce((acc, item) => acc + parseFloat(item.precio) * item.cantidad, 0);
     total.innerHTML = `<h3>Total: $${nuevoTotal.toFixed(2)}</h3>`;
-  }
+  };
 
   actualizarTotal();
 
