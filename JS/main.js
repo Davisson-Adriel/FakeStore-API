@@ -172,18 +172,36 @@ function ordenarProductos() {
 function buscarproductos() {
   const contenedor = document.getElementById("productos-container");
   const buscador = document.getElementById("buscador").value.toLowerCase();
-
   const tarjetas = contenedor.querySelectorAll(".carta");
+
+  let resultados = 0;
 
   tarjetas.forEach(div => {
     const titulo = div.querySelector("h2").textContent.toLowerCase();
     if (titulo.includes(buscador)) {
       div.style.display = "block";
+      resultados++;
     } else {
       div.style.display = "none";
-    };
+    }
   });
+
+  let mensaje = document.getElementById("mensaje-vacio");
+
+  if (!mensaje && resultados === 0) {
+    mensaje = document.createElement("p");
+    mensaje.id = "mensaje-vacio";
+    mensaje.textContent = "No se encontraron productos 🤷‍♂️";
+    mensaje.style.cssText = "text-align:center; margin:2rem 0; font-weight:600;";
+    contenedor.appendChild(mensaje);
+  };
+
+  if (mensaje) {
+    mensaje.style.display = resultados === 0 ? "block" : "none";
+  };
 };
+
+
 
 function agregaralcarrito() {
   const producto = event.target.parentElement.querySelector("h2").textContent;
