@@ -419,6 +419,7 @@ function verhistorial() {
     const mensaje = document.createElement("p");
     mensaje.textContent = "No hay historial de compras";
     productosHistorial.appendChild(mensaje);
+    borrarHistorial.style.display = "none";
   } else {
     historial.forEach((compra) => {
       const compraDiv = document.createElement("div");
@@ -441,6 +442,7 @@ function verhistorial() {
   borrarHistorial.addEventListener("click", () => {
     localStorage.removeItem("historial");
     productosHistorial.innerHTML = "<p>No hay historial de compras</p>";
+    borrarHistorial.style.display = "none";
     const cerrarModal = document.createElement("span");
     cerrarModal.className = "cerrar2";
     cerrarModal.innerHTML = "&times;";

@@ -724,6 +724,13 @@ html {
         width: 90%;
     }
 
+    .modal-contenido2 {
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
     .categoriatodos h1 {
         font-size: 0.8rem;
         padding: 5px;
