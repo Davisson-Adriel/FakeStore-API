@@ -12,30 +12,31 @@ function obtenerproductor() {
       contenedor.innerHTML = loading;
 
       setTimeout(() => {
-        contenedor.innerHTML = ""
+        contenedor.textContent = "";
+
         productos.forEach(producto => {
-          const card = document.createElement('div');
+          const card = document.createElement("div");
           card.className = "carta";
-
-          card.innerHTML = `
-                    <div class="contenido-carta">
-                        <img src="${producto.image}" alt="${producto.title}">
-                        <h2>${producto.title}</h2>
-                        <p>${producto.price}</p>
-                        <p>⭐${producto.rating.rate}</p>
-                        <button class="btn">Añadir al carrito</button>
-                    </div>
-                    `;
-
-          const boton = card.querySelector(".btn");
-          boton.addEventListener("click", () => {
-            agregaralcarrito(producto);
-          });
-
+          const contenido = document.createElement("div");
+          contenido.className = "contenido-carta";
+          const img = document.createElement("img");
+          img.src = producto.image;
+          img.alt = producto.title;
+          const h2 = document.createElement("h2");
+          h2.textContent = producto.title;
+          const pPrecio = document.createElement("p");
+          pPrecio.textContent = producto.price;
+          const pRating = document.createElement("p");
+          pRating.textContent = `⭐${producto.rating.rate}`;
+          const btn = document.createElement("button");
+          btn.className = "btn";
+          btn.textContent = "Añadir al carrito";
+          btn.addEventListener("click", () => agregaralcarrito(producto));
+          contenido.append(img, h2, pPrecio, pRating, btn);
+          card.appendChild(contenido);
           contenedor.appendChild(card);
         });
       }, 3000);
-
     });
 };
 
@@ -52,31 +53,40 @@ function filtrarProductos() {
       contenedor.innerHTML = loading;
 
       setTimeout(() => {
-        contenedor.innerHTML = "";
+        contenedor.textContent = "";
         productos.forEach(producto => {
           if (producto.category === categoria) {
-            const card = document.createElement('div');
+            const card = document.createElement("div");
             card.className = "carta";
-            card.innerHTML = `
-                        <div class="contenido-carta">
-                            <img src="${producto.image}" alt="${producto.title}">
-                            <h2>${producto.title}</h2>
-                            <p>${producto.price}</p>
-                            <p>⭐${producto.rating.rate}</p>
-                            <button class="btn">Añadir al carrito</button>
-                        </div>
-                        `;
 
-            const boton = card.querySelector(".btn");
-            boton.addEventListener("click", () => {
-              agregaralcarrito(producto);
-            });
+            const contenido = document.createElement("div");
+            contenido.className = "contenido-carta";
 
+            const img = document.createElement("img");
+            img.src = producto.image;
+            img.alt = producto.title;
+
+            const h2 = document.createElement("h2");
+            h2.textContent = producto.title;
+
+            const pPrecio = document.createElement("p");
+            pPrecio.textContent = producto.price;
+
+            const pRating = document.createElement("p");
+            pRating.textContent = `⭐${producto.rating.rate}`;
+
+            const btn = document.createElement("button");
+            btn.className = "btn";
+            btn.textContent = "Añadir al carrito";
+            btn.addEventListener("click", () => agregaralcarrito(producto));
+
+            contenido.append(img, h2, pPrecio, pRating, btn);
+            card.appendChild(contenido);
             contenedor.appendChild(card);
-
-          };
+          }
         });
       }, 3000);
+
 
     });
 
@@ -127,42 +137,70 @@ function ordenarProductos() {
       contenedor.innerHTML = "";
       productos.forEach(producto => {
         if (producto.category === categoriaseleccionada) {
-          const card = document.createElement('div');
+          const card = document.createElement("div");
           card.className = "carta";
-          card.innerHTML = `
-                    <div class="contenido-carta">
-                        <img src="${producto.image}" alt="${producto.title}">
-                        <h2>${producto.title}</h2>
-                        <p>${producto.price}</p>
-                        <p>⭐${producto.rating.rate}</p>
-                        <button class="btn">Añadir al carrito</button>
-                    </div>
-                    `;
 
-          const boton = card.querySelector(".btn");
-          boton.addEventListener("click", () => {
+          const contenido = document.createElement("div");
+          contenido.className = "contenido-carta";
+
+          const img = document.createElement("img");
+          img.src = producto.image;
+          img.alt = producto.title;
+
+          const h2 = document.createElement("h2");
+          h2.textContent = producto.title;
+
+          const pPrecio = document.createElement("p");
+          pPrecio.textContent = producto.price;
+
+          const pRating = document.createElement("p");
+          pRating.textContent = `⭐${producto.rating.rate}`;
+
+          const btn = document.createElement("button");
+          btn.className = "btn";
+          btn.textContent = "Añadir al carrito";
+          btn.addEventListener("click", () => {
             agregaralcarrito(producto);
           });
 
+          contenido.append(img, h2, pPrecio, pRating, btn);
+          card.appendChild(contenido);
           contenedor.appendChild(card);
+
         } else if (categoriaseleccionada === null) {
-          const card = document.createElement('div');
+          const card = document.createElement("div");
           card.className = "carta";
-          card.innerHTML = `
-                    <div class="contenido-carta">
-                        <img src="${producto.image}" alt="${producto.title}">
-                        <h2>${producto.title}</h2>
-                        <p>${producto.price}</p>
-                        <p>⭐${producto.rating.rate}</p>
-                        <button class="btn">Añadir al carrito</button>
-                    </div>
-                    `;
-          const boton = card.querySelector(".btn");
+
+          const contenido = document.createElement("div");
+          contenido.className = "contenido-carta";
+
+          const img = document.createElement("img");
+          img.src = producto.image;
+          img.alt = producto.title;
+
+          const h2 = document.createElement("h2");
+          h2.textContent = producto.title;
+
+          const pPrecio = document.createElement("p");
+          pPrecio.textContent = producto.price;
+
+          const pRating = document.createElement("p");
+          pRating.textContent = `⭐${producto.rating.rate}`;
+
+          const boton = document.createElement("button");
+          boton.className = "btn";
+          boton.textContent = "Añadir al carrito";
           boton.addEventListener("click", () => {
             agregaralcarrito(producto);
           });
-          contenedor.appendChild(card);
 
+          contenido.appendChild(img);
+          contenido.appendChild(h2);
+          contenido.appendChild(pPrecio);
+          contenido.appendChild(pRating);
+          contenido.appendChild(boton);
+          card.appendChild(contenido);
+          contenedor.appendChild(card);
         };
 
       });
@@ -272,9 +310,9 @@ function vercarrito() {
 
     cantidadInput.addEventListener("change", (e) => {
       const nuevaCantidad = parseInt(e.target.value);
-        item.cantidad = nuevaCantidad;
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        actualizarTotal();
+      item.cantidad = nuevaCantidad;
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      actualizarTotal();
     });
 
     const eliminar = document.createElement("button");
@@ -288,7 +326,8 @@ function vercarrito() {
         localStorage.setItem("carrito", JSON.stringify(carrito));
         div.remove();
         actualizarTotal();
-      }
+        actualizarContadorCarrito();
+      };
       alert("Producto eliminado del carrito");
     });
 
