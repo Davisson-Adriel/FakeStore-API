@@ -358,6 +358,25 @@ function vercarrito() {
   pagar.className = "pagar";
   pagar.textContent = "Pagar";
   pagar.addEventListener("click", () => {
+
+
+    const historial = JSON.parse(localStorage.getItem("historial")) || [];
+
+
+
+    const compra = {
+      fecha: new Date().toLocaleString(),
+      total: carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0).toFixed(2),
+      productos: carrito.map(item => ({
+        producto: item.producto,
+        precio: item.precio,
+        cantidad: item.cantidad
+      }))
+    };
+    historial.push(compra);
+    localStorage.setItem("historial", JSON.stringify(historial));
+    console.log("Historial de compras:", historial);
+
     localStorage.removeItem("carrito");
     actualizarContadorCarrito();
     alert("GRACIAS POR SU COMPRA");
@@ -376,6 +395,63 @@ function vercarrito() {
   productosCarrito.appendChild(pagar);
 
 };
+
+function verhistorial() {
+  const historial = JSON.parse(localStorage.getItem("historial")) || [];
+  const productosHistorial = document.getElementById("modal-contenido2");
+  productosHistorial.innerHTML = "";
+
+  const cerrarModal = document.createElement("span");
+  cerrarModal.className = "cerrar2";
+  cerrarModal.innerHTML = "&times;";
+  cerrarModal.onclick = function () {
+    document.getElementById("miModalHistorial").style.display = "none";
+  };
+
+  
+  productosHistorial.appendChild(cerrarModal);
+
+  const modal = document.getElementById("miModalHistorial");
+  modal.style.display = "block";
+
+  if (historial.length === 0) {
+    
+    const mensaje = document.createElement("p");
+    mensaje.textContent = "No hay historial de compras";
+    productosHistorial.appendChild(mensaje);
+  } else {
+    historial.forEach((compra) => {
+      const compraDiv = document.createElement("div");
+      compraDiv.className = "compra";
+      compraDiv.innerHTML = `
+        <h4>Fecha: ${compra.fecha}</h4>
+        <p>Total: $${compra.total}</p>
+        <h5>Productos:</h5>
+        <ul>
+          ${compra.productos.map(item => `<li>${item.cantidad} x ${item.producto} - $${item.precio}</li>`).join("")}
+        </ul>
+      `;
+      productosHistorial.appendChild(compraDiv);
+    });
+  }
+
+  const borrarHistorial = document.createElement("button");
+  borrarHistorial.className = "borrar-historial";
+  borrarHistorial.textContent = "Borrar historial";
+  borrarHistorial.addEventListener("click", () => {
+    localStorage.removeItem("historial");
+    productosHistorial.innerHTML = "<p>No hay historial de compras</p>";
+    const cerrarModal = document.createElement("span");
+    cerrarModal.className = "cerrar2";
+    cerrarModal.innerHTML = "&times;";
+    cerrarModal.onclick = function () {
+      document.getElementById("miModalHistorial").style.display = "none";
+    };
+    productosHistorial.appendChild(cerrarModal);
+    alert("Historial de compras borrado");
+  });
+  productosHistorial.appendChild(borrarHistorial);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const filtroOrdenar = document.getElementById("filtro-ordenar");
