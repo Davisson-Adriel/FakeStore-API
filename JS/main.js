@@ -91,7 +91,12 @@ function filtrarProductos() {
             btn.textContent = "Añadir al carrito";
             btn.addEventListener("click", () => agregaralcarrito(producto));
 
-            contenido.append(img, h2, pPrecio, pRating, btn);
+            const btn2 = document.createElement("button");
+            btn2.className = "btn2";
+            btn2.textContent = "Favoritos";
+            btn2.addEventListener("click", () => agregarfavoritos(producto));
+
+            contenido.append(img, h2, pPrecio, pRating, btn, btn2);
             card.appendChild(contenido);
             contenedor.appendChild(card);
           }
@@ -175,7 +180,12 @@ function ordenarProductos() {
             agregaralcarrito(producto);
           });
 
-          contenido.append(img, h2, pPrecio, pRating, btn);
+          const btn2 = document.createElement("button");
+          btn2.className = "btn2";
+          btn2.textContent = "Favoritos";
+          btn2.addEventListener("click", () => agregarfavoritos(producto));
+
+          contenido.append(img, h2, pPrecio, pRating, btn, btn2);
           card.appendChild(contenido);
           contenedor.appendChild(card);
 
@@ -260,13 +270,13 @@ function agregarfavoritos() {
   const productoExistente = favorito.find(item => item.producto === producto);
   const index = favorito.indexOf(productoExistente);
   if (productoExistente) {
-    
+
     favorito.splice(index, 1);
     localStorage.setItem("favorito", JSON.stringify(favorito));
     console.log(favorito)
 
   } else {
-    favorito.push({producto, preciotext});
+    favorito.push({ producto, preciotext });
     localStorage.setItem("favorito", JSON.stringify(favorito));
     console.log(favorito)
   };
@@ -280,7 +290,7 @@ function mostrarfavoritos() {
 
   const favorito = JSON.parse(localStorage.getItem("favorito")) || [];
   const contenedor = document.getElementById("productos-favoritos");
-  contenedor.innerHTML="";
+  contenedor.innerHTML = "";
   favorito.forEach(item => {
     const div = document.createElement("div");
     div.className = "producto-favorito";
@@ -290,10 +300,10 @@ function mostrarfavoritos() {
         `;
 
     contenedor.appendChild(div)
-   });
+  });
 
 
-   }
+}
 
 
 function agregaralcarrito() {
@@ -463,14 +473,14 @@ function verhistorial() {
     document.getElementById("miModalHistorial").style.display = "none";
   };
 
-  
+
   productosHistorial.appendChild(cerrarModal);
 
   const modal = document.getElementById("miModalHistorial");
   modal.style.display = "block";
 
   if (historial.length === 0) {
-    
+
     const mensaje = document.createElement("p");
     mensaje.textContent = "No hay historial de compras";
     productosHistorial.appendChild(mensaje);
