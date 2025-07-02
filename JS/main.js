@@ -216,11 +216,17 @@ function ordenarProductos() {
             agregaralcarrito(producto);
           });
 
+          const btn2 = document.createElement("button");
+          btn2.className = "btn2";
+          btn2.textContent = "Favoritos";
+          btn2.addEventListener("click", () => agregarfavoritos(producto));
+
           contenido.appendChild(img);
           contenido.appendChild(h2);
           contenido.appendChild(pPrecio);
           contenido.appendChild(pRating);
           contenido.appendChild(boton);
+          contenido.appendChild(btn2);
           card.appendChild(contenido);
           contenedor.appendChild(card);
         };
