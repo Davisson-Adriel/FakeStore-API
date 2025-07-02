@@ -129,6 +129,7 @@ async function inicio() {
   video.style.display = "flex";
 
   obtenerproductor();
+  mostrarfavoritos();
 };
 
 function ordenarProductos() {
@@ -270,15 +271,19 @@ function agregarfavoritos() {
     console.log(favorito)
   };
 
+  mostrarfavoritos();
+
 }
 
 function mostrarfavoritos() {
 
+
   const favorito = JSON.parse(localStorage.getItem("favorito")) || [];
   const contenedor = document.getElementById("productos-favoritos");
+  contenedor.innerHTML="";
   favorito.forEach(item => {
     const div = document.createElement("div");
-    div.className = "producto-carrito";
+    div.className = "producto-favorito";
     div.innerHTML = `
             <h3>${item.producto}</h3>
             <p>$${item.preciotext}</p>

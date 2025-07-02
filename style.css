@@ -159,6 +159,12 @@ footer img:hover {
     transform: scale(1.1);
 }
 
+.favoritos {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:#978f1d;
+    font-weight: bold;
+}
+
 .btn2 {
     background-color: #cabf1f;
     color: white;
@@ -474,6 +480,18 @@ footer img:hover {
     gap: 10px;
     align-items: center;
     width: 100%;
+}
+
+.producto-favorito {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 30%;
+    background-color: #666;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .producto-carrito h3 {
