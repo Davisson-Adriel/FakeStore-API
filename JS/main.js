@@ -28,11 +28,22 @@ function obtenerproductor() {
           pPrecio.textContent = producto.price;
           const pRating = document.createElement("p");
           pRating.textContent = `⭐${producto.rating.rate}`;
+
+
           const btn = document.createElement("button");
           btn.className = "btn";
           btn.textContent = "Añadir al carrito";
           btn.addEventListener("click", () => agregaralcarrito(producto));
-          contenido.append(img, h2, pPrecio, pRating, btn);
+
+          const btn2 = document.createElement("button");
+          btn2.className = "btn2";
+          btn2.textContent = "Favoritos";
+          btn2.addEventListener("click", () => agregarfavoritos(producto));
+
+
+
+
+          contenido.append(img, h2, pPrecio, pRating, btn, btn2);
           card.appendChild(contenido);
           contenedor.appendChild(card);
         });
@@ -239,6 +250,45 @@ function buscarproductos() {
   };
 };
 
+function agregarfavoritos() {
+
+  const producto = event.target.parentElement.querySelector("h2").textContent;
+  const preciotext = event.target.parentElement.querySelector("p").textContent;
+  const favorito = JSON.parse(localStorage.getItem("favorito")) || [];
+
+  const productoExistente = favorito.find(item => item.producto === producto);
+  const index = favorito.indexOf(productoExistente);
+  if (productoExistente) {
+    
+    favorito.splice(index, 1);
+    localStorage.setItem("favorito", JSON.stringify(favorito));
+    console.log(favorito)
+
+  } else {
+    favorito.push({producto, preciotext});
+    localStorage.setItem("favorito", JSON.stringify(favorito));
+    console.log(favorito)
+  };
+
+}
+
+function mostrarfavoritos() {
+
+  const favorito = JSON.parse(localStorage.getItem("favorito")) || [];
+  const contenedor = document.getElementById("productos-favoritos");
+  favorito.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "producto-carrito";
+    div.innerHTML = `
+            <h3>${item.producto}</h3>
+            <p>$${item.preciotext}</p>
+        `;
+
+    contenedor.appendChild(div)
+   });
+
+
+   }
 
 
 function agregaralcarrito() {

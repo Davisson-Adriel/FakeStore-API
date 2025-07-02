@@ -159,6 +159,36 @@ footer img:hover {
     transform: scale(1.1);
 }
 
+.btn2 {
+    background-color: #cabf1f;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    margin-left: 5px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    margin-top: auto;
+}
+
+.btn2click {
+    background-color: #f1b100;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    margin-top: auto;
+}
+
+.btn2:hover {
+    background-color: #f1b100;
+    transform: scale(1.05);
+}
+
 .carta {
     width: 250px;
     height: 250px;
